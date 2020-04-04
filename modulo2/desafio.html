@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <button id="gerador">Gerador de Quadrados</button>
+  </body>
+  <script>
+    const app = document.getElementById('app')
+    const gerador = document.getElementById('gerador')
+
+    const gerarQuadrado = () => {
+      const quadrado = document.createElement('div')
+      quadrado.style.backgroundColor = 'red'
+      quadrado.style.width = '100px'
+      quadrado.style.height = '100px'
+      quadrado.onmouseenter = () => {
+        quadrado.style.backgroundColor = gerarCorAleatoria()
+      }
+      app.appendChild(quadrado)
+    }
+    const gerarCorAleatoria = () => {
+      var letras = '0123456789ABCDEF'
+      var color = '#'
+      for (var i = 0; i < 6; i++) {
+        color += letras[Math.floor(Math.random() * 16)]
+      }
+      return color
+    }
+
+    gerador.onclick = gerarQuadrado
+  </script>
+</html>
