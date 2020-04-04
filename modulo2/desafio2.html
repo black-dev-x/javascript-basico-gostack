@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="lista"></ul>
+    <input type="text" name="nome" />
+    <button onClick="adicionar()">Adicionar</button>
+  </body>
+  <script>
+    const criaListItem = (nome) => {
+      const li = document.createElement('li')
+      const texto = document.createTextNode(nome)
+      li.appendChild(texto)
+      ulLista.appendChild(li)
+    }
+    const adicionar = () => {
+      const inputNome = document.querySelector('input[name=nome]')
+      const novoNome = inputNome.value
+      criaListItem(novoNome)
+      inputNome.value = ''
+    }
+    const nomes = ['Diego', 'Gabriel', 'Lucas']
+    const ulLista = document.getElementById('lista')
+    nomes.forEach((nome) => criaListItem(nome))
+  </script>
+</html>
