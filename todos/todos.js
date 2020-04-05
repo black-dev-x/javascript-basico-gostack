@@ -9,13 +9,28 @@ const renderTodos = () => {
   todos.map(transformOnListItem).forEach(insertOnListElement)
 }
 
-const transformOnListItem = todo => {
+const transformOnListItem = (todo, index) => {
   const li = document.createElement('li')
   const text = document.createTextNode(todo)
+  const removeLink = createRemoveLink(index)
   li.appendChild(text)
+  li.appendChild(removeLink)
   return li
 }
 
+const createRemoveLink = index => {
+  var linkElement = document.createElement('a')
+  linkElement.setAttribute('href', '#')
+  var linkText = document.createTextNode('Excluir')
+  linkElement.appendChild(linkText)
+  linkElement.onclick = () => removeTodo(index)
+  return linkElement
+}
+
+const removeTodo = index => {
+  todos.splice(index, 1)
+  renderTodos()
+}
 const insertOnListElement = listItem => {
   listElement.appendChild(listItem)
 }
