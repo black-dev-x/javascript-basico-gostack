@@ -5,6 +5,7 @@ const buttonElement = document.querySelector('#app button')
 const todos = ['Ensinar Javascript', 'Ensinar React', 'Aprender React Native']
 
 const renderTodos = () => {
+  listElement.innerHTML = ''
   todos.map(transformOnListItem).forEach(insertOnListElement)
 }
 
@@ -19,6 +20,12 @@ const insertOnListElement = listItem => {
   listElement.appendChild(listItem)
 }
 
-const addNewTodo = () => {}
+const addNewTodo = () => {
+  const todo = inputElement.value
+  inputElement.value = ''
+  todos.push(todo)
+  renderTodos()
+}
 
+buttonElement.onclick = addNewTodo
 renderTodos()
