@@ -2,10 +2,11 @@ const listElement = document.querySelector('#app ul')
 const inputElement = document.querySelector('#app input')
 const buttonElement = document.querySelector('#app button')
 
-const todos = ['Ensinar Javascript', 'Ensinar React', 'Aprender React Native']
+let todos = []
 
 const renderTodos = () => {
   listElement.innerHTML = ''
+  saveToStorage(todos)
   todos.map(transformOnListItem).forEach(insertOnListElement)
 }
 
@@ -42,5 +43,14 @@ const addNewTodo = () => {
   renderTodos()
 }
 
+const saveToStorage = () => {
+  localStorage.setItem('todos', JSON.stringify(todos))
+}
+const recoverFromStorage = () => {
+  const todosJSON = localStorage.getItem('todos')
+  todos = JSON.parse(todosJSON) || []
+}
+
 buttonElement.onclick = addNewTodo
+recoverFromStorage()
 renderTodos()
